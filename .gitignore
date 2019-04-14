@@ -1,2 +1,10 @@
 .idea/
-cmake-build-debug
+cmake-build-debug/
+CMakeFiles/
+bin/
+
+.directory
+*.cmake
+CMakeCache.txt
+Makefile
+out.json

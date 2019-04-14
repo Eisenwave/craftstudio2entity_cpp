@@ -1,0 +1,95 @@
+{
+  "title": "geometry.rotations",
+  "tree": [
+    {
+      "name": "x",
+      "position": [ 8, 0, 0 ],
+      "offsetFromPivot": [ 0, 0, 0 ],
+      "size": [ 16, 1, 1 ],
+      "rotation": [ 0, 0, 0 ],
+      "texOffset": [ 15, 15 ],
+      "children": []
+    },
+    {
+      "name": "y",
+      "position": [ 0, 4, 0 ],
+      "offsetFromPivot": [ 0, 0, 0 ],
+      "size": [ 1, 8, 1 ],
+      "rotation": [ 0, 0, 0 ],
+      "texOffset": [ 15, 15 ],
+      "children": []
+    },
+    {
+      "name": "z",
+      "position": [ 0, 0, 2 ],
+      "offsetFromPivot": [ 0, 0, 0 ],
+      "size": [ 1, 1, 4 ],
+      "rotation": [ 0, 0, 0 ],
+      "texOffset": [ 12, 12 ],
+      "children": []
+    },
+    {
+      "name": "rot90X45Y",
+      "position": [ 0, 6, 25 ],
+      "offsetFromPivot": [ 0, 0, 0 ],
+      "size": [ 33, 5, 16 ],
+      "rotation": [ 90, 45, 0 ],
+      "texOffset": [ 0, 0 ],
+      "children": []
+    },
+    {
+      "name": "rot90X45Z",
+      "position": [ 35, 32, -28 ],
+      "offsetFromPivot": [ 0, 0, 0 ],
+      "size": [ 32, 6, 16 ],
+      "rotation": [ 90, -45, 0 ],
+      "texOffset": [ 0, 0 ],
+      "children": []
+    },
+    {
+      "name": "rot90Y45X",
+      "position": [ 4, 54, 9 ],
+      "offsetFromPivot": [ 0, 0, 0 ],
+      "size": [ 32, 6, 16 ],
+      "rotation": [ 45, 89.99999, 0 ],
+      "texOffset": [ 0, 0 ],
+      "children": []
+    },
+    {
+      "name": "rot90Y45Z",
+      "position": [ 0, 32, 0 ],
+      "offsetFromPivot": [ 0, 0, 0 ],
+      "size": [ 29, 6, 16 ],
+      "rotation": [ 0, 89.99999, 45 ],
+      "texOffset": [ 0, 0 ],
+      "children": []
+    },
+    {
+      "name": "rot90Z45X",
+      "position": [ 0, 6, -30 ],
+      "offsetFromPivot": [ 0, 0, 0 ],
+      "size": [ 41, 6, 16 ],
+      "rotation": [ 45, 0, 89.99999 ],
+      "texOffset": [ 0, 0 ],
+      "children": []
+    },
+    {
+      "name": "rot90Z45Y",
+      "position": [ 41, 32, 6 ],
+      "offsetFromPivot": [ 0, 0, 0 ],
+      "size": [ 32, 6, 16 ],
+      "rotation": [ 0, 45, 89.99999 ],
+      "texOffset": [ 0, 0 ],
+      "children": []
+    },
+    {
+      "name": "rotCube",
+      "position": [ 35, 57, -28 ],
+      "offsetFromPivot": [ 0, 0, 0 ],
+      "size": [ 16, 16, 16 ],
+      "rotation": [ 34.9389, 56.9728, 43.92721 ],
+      "texOffset": [ 0, 0 ],
+      "children": []
+    }
+  ]
+}

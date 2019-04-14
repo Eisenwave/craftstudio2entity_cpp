@@ -1,0 +1,87 @@
+{
+  "title": "geometry.test",
+  "tree": [
+    {
+      "name": "Block",
+      "position": [ 8, 9, 7 ],
+      "offsetFromPivot": [ 0, 0, 12 ],
+      "size": [ 16, 16, 32 ],
+      "rotation": [ -44.4085, 36.56065, -87.41576 ],
+      "texOffset": [ -16, -16 ],
+      "children": []
+    },
+    {
+      "name": "Second",
+      "position": [ 5.152007, 25.22733, 2.99072 ],
+      "offsetFromPivot": [ 0, 0, 0 ],
+      "size": [ 30, 16, 16 ],
+      "rotation": [ 0, 0, 0 ],
+      "texOffset": [ 0, 0 ],
+      "children": []
+    },
+    {
+      "name": "Third",
+      "position": [ -42, 9, 0 ],
+      "offsetFromPivot": [ 0, 0, 0 ],
+      "size": [ 16, 16, 16 ],
+      "rotation": [ 0, 74.76, 0 ],
+      "texOffset": [ 0, 0 ],
+      "children": [
+        {
+          "name": "Third_Child",
+          "position": [ 20, 11, -1 ],
+          "offsetFromPivot": [ 0, 0, 0 ],
+          "size": [ 16, 16, 16 ],
+          "rotation": [ 30, 45, 15 ],
+          "texOffset": [ 0, 0 ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Fourth",
+      "position": [ 5.152007, 25.22733, -30 ],
+      "offsetFromPivot": [ 0, 0, 0 ],
+      "size": [ 16, 16, 16 ],
+      "rotation": [ 13.37498, -4.541093, -149.5848 ],
+      "texOffset": [ 0, 0 ],
+      "children": []
+    },
+    {
+      "name": "x-rotated",
+      "position": [ 0, 47, 0 ],
+      "offsetFromPivot": [ 0, 0, 0 ],
+      "size": [ 16, 16, 16 ],
+      "rotation": [ 22.5, 0, 0 ],
+      "texOffset": [ 0, 0 ],
+      "children": []
+    },
+    {
+      "name": "y-rotated",
+      "position": [ -25, 47, 0 ],
+      "offsetFromPivot": [ 0, 0, 0 ],
+      "size": [ 16, 16, 16 ],
+      "rotation": [ 0, 22.5, 0 ],
+      "texOffset": [ 0, 0 ],
+      "children": []
+    },
+    {
+      "name": "z-rotated",
+      "position": [ 26, 48, 0 ],
+      "offsetFromPivot": [ 0, 0, 0 ],
+      "size": [ 16, 16, 16 ],
+      "rotation": [ 0, 0, 22.5 ],
+      "texOffset": [ 0, 0 ],
+      "children": []
+    },
+    {
+      "name": "Fifth",
+      "position": [ 0, 58, -45 ],
+      "offsetFromPivot": [ 0, 0, 0 ],
+      "size": [ 16, 16, 16 ],
+      "rotation": [ 0, 0, 0 ],
+      "texOffset": [ 0, 32 ],
+      "children": []
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "title": "geometry.axes",
+  "tree": [
+    {
+      "name": "x",
+      "position": [ 8, 0, 0 ],
+      "offsetFromPivot": [ 0, 0, 0 ],
+      "size": [ 16, 1, 1 ],
+      "rotation": [ 0, 0, 0 ],
+      "texOffset": [ 15, 15 ],
+      "children": []
+    },
+    {
+      "name": "y",
+      "position": [ 0, 4, 0 ],
+      "offsetFromPivot": [ 0, 0, 0 ],
+      "size": [ 1, 8, 1 ],
+      "rotation": [ 0, 0, 0 ],
+      "texOffset": [ 15, 15 ],
+      "children": []
+    },
+    {
+      "name": "z",
+      "position": [ 0, 0, 2 ],
+      "offsetFromPivot": [ 0, 0, 0 ],
+      "size": [ 1, 1, 4 ],
+      "rotation": [ 0, 0, 0 ],
+      "texOffset": [ 12, 12 ],
+      "children": []
+    }
+  ]
+}
