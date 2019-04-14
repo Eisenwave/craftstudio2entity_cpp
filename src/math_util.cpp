@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+#include <array>
 
 // CONSTANTS
 
@@ -66,6 +67,11 @@ Vec3<double> Vec3<double>::modulo(const Vec3<double> &v) const {
 }
 
 template<class T>
+std::ostream &operator<<(std::ostream &stream, const Vec3<T> &a) {
+    return stream << a.to_string();
+}
+
+template<class T>
 bool operator==(const Vec3<T> &a, const Vec3<T> &b) {
     return a.x == b.x && a.y == b.y && a.z == b.z;
 }
@@ -103,15 +109,7 @@ Vec3<T> operator*(const Vec3<T> &vector, double scalar) {
 class Matrix3x3d {
 
 private:
-    double content[9];
-
-#pragma clang diagnostic push
-#pragma ide diagnostic ignored "google-explicit-constructor"
-
-    Matrix3x3d(const double content...) noexcept : content{content} {}
-
-#pragma clang diagnostic pop
-
+    std::array<double, 9> content;
 
 public:
 
@@ -181,9 +179,9 @@ public:
 
     Matrix3x3d(double m00, double m01, double m02,
                double m10, double m11, double m12,
-               double m20, double m21, double m22) noexcept: content{m00, m01, m02, m10, m11, m12, m20, m21, m22} {
-    }
+               double m20, double m21, double m22) noexcept: content{m00, m01, m02, m10, m11, m12, m20, m21, m22} {}
 
+    explicit Matrix3x3d(std::array<double, 9> content) : content{content} {}
 
     Matrix3x3d() = default;
 
@@ -244,7 +242,7 @@ public:
 
 
     Matrix3x3d times(const Matrix3x3d &m) const {
-        double result[9];
+        std::array<double, 9> result{};
 
         /* outer loop for acquiring the position (i, j) in the product matrix */
         for (int i = 0; i < 3; i++)
@@ -256,7 +254,7 @@ public:
                     result[index] += this->get(i, k) * m.get(l, j);
             }
 
-        return m;
+        return Matrix3x3d{result};
     }
 
     Vec3<double> times(const Vec3<double> &v) const {
@@ -378,13 +376,13 @@ Matrix3x3d Matrix3x3d::from_euler_ZYX(double x, double y, double z) {
 
 static const Vec3<double> _360{360, 360, 360};
 
-Vec3<double> craftStudioRotationToEntityRotation(const Vec3<double> &xyzDegrees) {
-    Vec3<double> result = xyzDegrees * DEG_TO_RAD;
-    Matrix3x3d transformYXZ = Matrix3x3d(1, 0, 0, 0, 1, 0, 0, 0, -1) * Matrix3x3d::from_euler_YXZ(result);
-    return transformYXZ.get_lz_ry_rx_euler_rotation().times(RAD_TO_DEG);
+Vec3<double> craftstudio_rot_to_entity_rot(const Vec3<double> &xyzDegrees) {
+    Vec3<double> xyzRad = xyzDegrees * DEG_TO_RAD;
+    Matrix3x3d transform = Matrix3x3d(1, 0, 0, 0, 1, 0, 0, 0, -1) * Matrix3x3d::from_euler_YXZ(xyzRad);
+    return transform.get_lz_ry_rx_euler_rotation() * RAD_TO_DEG;
 }
 
-bool isZeroRotation(const Vec3<double> &anglesDeg) {
+bool is_zero_rotation(const Vec3<double> &anglesDeg) {
     Vec3<double> transformed = (anglesDeg % _360 + _360) % _360;
     return transformed.x < EPSILON &&
            transformed.y < EPSILON &&

@@ -55,15 +55,15 @@ void blockToBone(BedrockEntityGeometry *geometry,
             -pivot.z
     };
 
-    Vec3<double> rotation = craftStudioRotationToEntityRotation(block.rotation);
+    Vec3<double> rotation = craftstudio_rot_to_entity_rot(block.rotation);
+    //std::cerr << block.rotation.to_string() << " -> " << rotation.to_string() << std::endl;
 
-    //System.err.println(name);
     BedrockEntityBone bone{&(block.name), parentName, &pivot, &rotation};
     bone.push_cube(blockToCube(block, parent));
     geometry->push_bone(bone);
 
     for (const CraftStudioBlock &child : block.get_children()) {
-        if (isZeroRotation(child.rotation))
+        if (is_zero_rotation(child.rotation))
             bone.push_cube(blockToCube(child, &block));
         else
             blockToBone(geometry, child, &block);

@@ -39,6 +39,9 @@ public:
 };
 
 template<class T>
+std::ostream &operator<<(std::ostream &stream, const Vec3<T> &a);
+
+template<class T>
 bool operator==(const Vec3<T> &a, const Vec3<T> &b);
 
 template<class T>
@@ -205,8 +208,8 @@ Matrix3x3d operator*(const Matrix3x3d &lhs, const Matrix3x3d &rhs);
 
 static const Vec3<double> _360 = Vec3<double>(360, 360, 360);
 
-Vec3<double> craftStudioRotationToEntityRotation(const Vec3<double> &xyzDegrees);
+Vec3<double> craftstudio_rot_to_entity_rot(const Vec3<double> &xyzDegrees);
 
-bool isZeroRotation(const Vec3<double> &anglesDeg);
+bool is_zero_rotation(const Vec3<double> &anglesDeg);
 
 #endif //CRAFTSTUDIO2ENTITY_CPP_MATH_UTIL_HPP
