@@ -192,12 +192,6 @@ public:
         return content[i * 3 + j];
     }
 
-    /**
-     * Special case formula for 3x3 matrices. (Using <a href="https://en.wikipedia.org/wiki/Cramer%27s_rule">Cramer's
-     * Rule</a>)
-     *
-     * @return the determinant of the matrix
-     */
     double get_determinant() const {
         return get(0, 0) * get(1, 1) * get(2, 2) +
                get(0, 1) * get(1, 2) * get(2, 0) +
