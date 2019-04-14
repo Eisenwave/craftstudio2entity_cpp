@@ -238,15 +238,10 @@ public:
     Matrix3x3d times(const Matrix3x3d &m) const {
         std::array<double, 9> result{};
 
-        /* outer loop for acquiring the position (i, j) in the product matrix */
-        for (int i = 0; i < 3; i++)
-            for (int j = 0; j < 3; j++) {
-                const int index = i * 3 + j;
-
-                /* inner loop for calculating the result at (i, j) */
-                for (int k = 0, l = 0; k < 3 && l < 3; k++, l++)
-                    result[index] += this->get(i, k) * m.get(l, j);
-            }
+        for (int i = 0, index = 0; i < 3; ++i)
+            for (int j = 0; j < 3; ++j, ++index)
+                for (int k = 0; k < 3; k++)
+                    result[index] += this->get(i, k) * m.get(k, j);
 
         return Matrix3x3d{result};
     }
@@ -299,17 +294,6 @@ public:
                ", " + std::to_string(content[7]) +
                ", " + std::to_string(content[8]) + "]]";
     }
-
-    /*String toString(DecimalFormat format) {
-        StringBuilder
-        builder = new StringBuilder("[")
-        .append(format.format(content[0]));
-        for (int i = 1; i < content.length; i++)
-            builder
-                    .append(", ")
-                    .append(format.format(content[i]));
-        return builder.append(']').toString();
-    }*/
 
     bool equals(const Matrix3x3d &other, double epsilon) {
         for (int i = 0; i < 9; i++)
