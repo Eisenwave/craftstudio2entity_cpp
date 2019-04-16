@@ -41,26 +41,23 @@ BedrockEntityCube blockToCube(const CraftStudioBlock &block, const CraftStudioBl
  * @param block the block to be converted
  * @param parent the parent of the block, can be {@code null}
  */
-void blockToBone(BedrockEntityGeometry *geometry,
+void blockToBone(BedrockEntityGeometry &geometry,
                  const CraftStudioBlock &block,
                  const CraftStudioBlock *parent) {
     const std::string *parentName = parent == nullptr ? nullptr : &parent->name;
 
-    Vec3<double> pivot = block.position;
+    auto *const pivot = new Vec3<double>{};
+
+    *pivot = block.position;
     if (parent != nullptr)
-        pivot = pivot + parent->position;
-    pivot = {
-            pivot.x,
-            pivot.y,
-            -pivot.z
-    };
+        *pivot = *pivot + parent->position;
+    pivot->z = -pivot->z;
 
-    Vec3<double> rotation = craftstudio_rot_to_entity_rot(block.rotation);
-    //std::cerr << block.rotation.to_string() << " -> " << rotation.to_string() << std::endl;
+    auto *const rotation = new Vec3<double>{};
+    *rotation = craftstudio_rot_to_entity_rot(block.rotation);
 
-    BedrockEntityBone bone{&(block.name), parentName, &pivot, &rotation};
+    BedrockEntityBone bone{block.name, parentName, pivot, rotation};
     bone.push_cube(blockToCube(block, parent));
-    geometry->push_bone(bone);
 
     for (const CraftStudioBlock &child : block.get_children()) {
         if (is_zero_rotation(child.rotation))
@@ -68,6 +65,8 @@ void blockToBone(BedrockEntityGeometry *geometry,
         else
             blockToBone(geometry, child, &block);
     }
+
+    geometry.push_bone(std::move(bone));
 }
 
 
@@ -80,7 +79,7 @@ BedrockEntityModel convert(const CraftStudioModel &csModel) {
     };
 
     for (const CraftStudioBlock &block : csModel.get_blocks())
-        blockToBone(geometry, block, nullptr);
+        blockToBone(*geometry, block, nullptr);
 
     result.insert(csModel.title, geometry);
     return result;

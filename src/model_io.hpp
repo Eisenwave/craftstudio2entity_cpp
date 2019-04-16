@@ -99,7 +99,7 @@ inline json cube_to_json(const BedrockEntityCube &cube) {
 
 json bone_to_json(const BedrockEntityBone &bone) {
     json root = json::object();
-    root["name"] = *bone.name;
+    root["name"] = bone.name;
 
     if (bone.has_parent())
         root["parent"] = *bone.parent;
@@ -109,7 +109,7 @@ json bone_to_json(const BedrockEntityBone &bone) {
     }
     if (bone.has_rotation()) {
         if (!bone.has_pivot())
-            std::cerr << ("WARNING: Bone \"" + *bone.name + "\" has a rotation but no pivot");
+            std::cerr << ("WARNING: Bone \"" + bone.name + "\" has a rotation but no pivot");
         root["rotation"] = vec3_to_json(*bone.rotation);
     }
 

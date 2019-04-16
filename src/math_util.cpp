@@ -188,7 +188,7 @@ public:
     // GETTERS
 
 
-    double get(int i, int j) const {
+    inline double get(int i, int j) const {
         return content[i * 3 + j];
     }
 

@@ -1,3 +1,7 @@
+#include <utility>
+
+#include <utility>
+
 //
 // Created by user on 4/13/19.
 //
@@ -29,18 +33,50 @@ struct BedrockEntityCube {
 class BedrockEntityBone {
 
 private:
-    std::vector<BedrockEntityCube> cubes{2};
+    std::vector<BedrockEntityCube> cubes{};
 
 public:
-    const std::string *name;
+    const std::string name;
     const std::string *parent;
     const Vec3<double> *pivot;
     const Vec3<double> *rotation;
 
-    BedrockEntityBone(const std::string *name,
+    /**
+     * Constructs a new bone.
+     *
+     * @param name the name of the bone
+     * @param parent the name of the parent or <code>nullptr</code> if there is none
+     * (deleted upon destruction)
+     * @param pivot the pivot of the rotation or <code>nullptr</code> if there is none
+     * (deleted upon destruction)
+     * @param rotation the rotation (x, y, z) angles in degrees or <code>nullptr</code> if there are none
+     * (deleted upon destruction)
+     */
+    BedrockEntityBone(std::string name,
                       const std::string *parent,
                       Vec3<double> *pivot,
-                      Vec3<double> *rotation) : name{name}, parent{parent}, pivot{pivot}, rotation{rotation} {}
+                      Vec3<double> *rotation) :
+            name{std::move(name)},
+            parent{parent},
+            pivot{pivot},
+            rotation{rotation} {}
+
+    BedrockEntityBone(BedrockEntityBone &&other) noexcept :
+            cubes{std::move(other.cubes)},
+            name{other.name},
+            parent{other.parent},
+            pivot{other.pivot},
+            rotation{other.rotation} {
+        other.pivot = nullptr;
+        other.rotation = nullptr;
+    };
+
+    BedrockEntityBone(BedrockEntityBone &bone) = delete;
+
+    ~BedrockEntityBone() {
+        delete pivot;
+        delete rotation;
+    }
 
     bool has_parent() const {
         return parent != nullptr;
@@ -88,8 +124,8 @@ public:
         return bones;
     }
 
-    void push_bone(BedrockEntityBone &bone) {
-        bones.push_back(bone);
+    void push_bone(BedrockEntityBone bone) {
+        bones.push_back(std::move(bone));
     }
 
     int size() const {

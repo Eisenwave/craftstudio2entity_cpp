@@ -25,6 +25,10 @@ public:
 
     Vec3() noexcept;
 
+    ~Vec3() {
+
+    }
+
     Vec3<T> plus(const Vec3<T> &v) const;
 
     Vec3<T> minus(const Vec3<T> &v) const;
